@@ -16,7 +16,7 @@ public class Main {
         //testGetNetWorkSize();
 		//StringsHandler.isAnagrams("abcdcba", "");
 		
-		System.out.println("Main.main() - hello world");
+		System.out.println("Main.main() - hello world");  
 		System.out.println("Main.main() - hello world");
 		System.out.println("Main.main() - hello world");
 		System.out.println("Main.main() - hello world");  
