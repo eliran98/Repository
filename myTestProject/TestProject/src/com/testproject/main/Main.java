@@ -16,6 +16,7 @@ public class Main {
         //testGetNetWorkSize();
 		//StringsHandler.isAnagrams("abcdcba", "");
 		
+		System.out.println("Main.main() - hello world");
 		
 		//testNodeLinkedList();
 		testStringsHandler();
