@@ -1,7 +1,7 @@
 package com.testproject.code.examples;
 
 public class EqualAndHashCodeOveride {
-   
+    /*a.quals(b) <=> a.hashCode()==b.hashCode()*/
 	private int id;
 
 	@Override
