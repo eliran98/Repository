@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.testproject.questions.ArraysHandler;
+import com.testproject.questions.BackTracking;
 import com.testproject.questions.NodeLinkedList;
 import com.testproject.questions.NodeTree;
 import com.testproject.questions.StringsHandler;
@@ -17,8 +18,9 @@ public class Main {
 		//StringsHandler.isAnagrams("abcdcba", "")
 		
 		//testNodeLinkedList();
-		testStringsHandler();
+		//testStringsHandler();
 		//testNodeTree();
+		BackTracking.printPermutations("ABC");
 	}
 	
 	
