@@ -1,4 +1,4 @@
-package com.testproject.algorithm;
+package com.testproject.algorithm.search.sort;
 /*Given a sorted array arr[] of n elements, write a function to search a given element x in arr[]
  * TimeComplexity o(logn).
  */
