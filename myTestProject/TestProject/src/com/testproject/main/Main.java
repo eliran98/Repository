@@ -20,7 +20,8 @@ public class Main {
 		//testNodeLinkedList();
 		//testStringsHandler();
 		//testNodeTree();
-		BackTracking.printPermutations("ABC");
+		//BackTracking.printPermutations("ABC");
+		testNodeLinkedList();
 	}
 	
 	
@@ -59,6 +60,33 @@ public class Main {
   
    public static void testNodeLinkedList(){
 	   
+	   // First List: 5->6->3  // represents number 563
+	   //Second List: 8->4->2 //  represents number 842
+	   NodeLinkedList linkedListA = new NodeLinkedList(9);
+	   linkedListA.appendToTail(9);
+	   linkedListA.appendToTail(9);
+	   NodeLinkedList linkedListB = new NodeLinkedList(1);
+	   linkedListB.appendToTail(8);
+	   
+	   NodeLinkedList.printLinkedList(linkedListA);
+	   System.out.println("");
+	   System.out.println("");
+	   NodeLinkedList.printLinkedList(linkedListB);
+	   System.out.println("");
+	   System.out.println("");
+	   NodeLinkedList result = NodeLinkedList.addSumLinkedList(linkedListA, linkedListB);
+	   NodeLinkedList.printLinkedList(result);
+	   
+   }
+   
+   public static void testStringsHandler(){
+	   
+	   int r = StringsHandler.getNumStrings(2);
+	  //String res = StringsHandler.removeRepeatingsChars("aaaabbbbccccdfdfdfdfdfdhz");
+	  System.out.println("Main.testStringsHandler().res="+r);
+   }
+   
+   public static void temp(){
 	   int data = 1;
 	   NodeLinkedList head = new NodeLinkedList(data);
 	   
@@ -73,13 +101,6 @@ public class Main {
 	   //System.out.println();
 	   head = NodeLinkedList.reverseEveryKNodes(head,3);
 	   NodeLinkedList.printLinkedList(head);
-   }
-   
-   public static void testStringsHandler(){
-	   
-	   int r = StringsHandler.getNumStrings(2);
-	  //String res = StringsHandler.removeRepeatingsChars("aaaabbbbccccdfdfdfdfdfdhz");
-	  System.out.println("Main.testStringsHandler().res="+r);
    }
 	
 }	

@@ -223,4 +223,198 @@ public class NodeLinkedList {
 		}
 		return counter;
 	}
+	
+	//Add two numbers represented by linked 
+	public static NodeLinkedList addSumLinkedList(NodeLinkedList linkedListA,NodeLinkedList linkedListB){
+		
+		//linkedListA = reverseLinkedList(linkedListA);
+		//linkedListB = reverseLinkedList(linkedListB);
+		
+		///return reverseLinkedList(calSumLinkedList(linkedListA,linkedListB,null,0));
+		
+		return addList(linkedListA,linkedListB);
+	}
+	
+	/*assumption linkedListA and linkedListB in the same length*/
+	private static NodeLinkedList calSumLinkedList(NodeLinkedList linkedListA,NodeLinkedList linkedListB,NodeLinkedList headSumLinkedList,int resude){
+		
+		if(linkedListA == null || linkedListB == null){
+			return headSumLinkedList;
+		}
+		
+		int sum = linkedListA.data + linkedListB.data;
+		boolean isResude = sum >= 10  ? true : false;
+		boolean isLastNode = linkedListA.next == null ? true : false;
+		
+		if(headSumLinkedList == null){
+			if(isResude){
+				if(isLastNode){
+					headSumLinkedList = new NodeLinkedList(sum - 10 + resude);
+					headSumLinkedList.appendToTail(1);
+					resude = 0;
+				}else{
+					headSumLinkedList = new NodeLinkedList(sum - 10 + resude);
+					resude = 1;
+				}
+			}else{
+				headSumLinkedList = new NodeLinkedList(linkedListA.data + linkedListB.data + resude);
+				resude = 0;
+			}
+			
+		}else{
+			if(isResude){
+				if(isLastNode){
+					headSumLinkedList.appendToTail(sum - 10 + resude);
+					headSumLinkedList.appendToTail(1);
+					resude = 0;
+				}else{
+					headSumLinkedList.appendToTail(sum - 10 + resude);
+					resude = 1;
+				}
+				
+			}else{
+			   headSumLinkedList.appendToTail(linkedListA.data + linkedListB.data + resude);
+			   resude = 0;
+			}
+		}
+		
+		calSumLinkedList(linkedListA.next, linkedListB.next, headSumLinkedList,resude);
+		
+		return headSumLinkedList;
+	}
+	
+	public static NodeLinkedList temp(NodeLinkedList linkedListA,NodeLinkedList linkedListB,int len){
+		
+		if(linkedListA == null || linkedListB == null){
+			return null;
+		}
+		
+		NodeLinkedList headSumLinkedList = temp(linkedListA.next,linkedListB.next,len++);
+		
+		if(linkedListA.next == null || linkedListB.next == null){
+			headSumLinkedList = new NodeLinkedList(linkedListA.data + linkedListB.data);
+		}else{
+			if(linkedListA.next.data + linkedListB.next.data >= 10){
+				/*update prev Node*/
+				if(len == 1){
+					NodeLinkedList prev = null;
+					if(linkedListA.data + linkedListB.data + 1 > 10){
+						headSumLinkedList.appendToTailWithReturnPrev(linkedListA.data + linkedListB.data + 1 - 10);
+						headSumLinkedList.appendToTail(1);
+					}else{
+						 headSumLinkedList.appendToTailWithReturnPrev(linkedListA.data + linkedListB.data + 1);
+					}
+				}else{
+					 headSumLinkedList.appendToTailWithReturnPrev(linkedListA.data + linkedListB.data + 1);
+				}
+			}else{
+				headSumLinkedList.appendToTail(linkedListA.data + linkedListB.data);
+			}
+		}
+		return headSumLinkedList;
+	}
+	
+	private void appendToTailWithReturnPrev(int data) {
+		NodeLinkedList nodeLinkedList = new NodeLinkedList(data);
+
+		NodeLinkedList end = this;
+
+		while (end.next != null) {
+			end = end.next;
+		}
+        
+		if(end.data >= 10)
+				end.data-=10;
+		end.next = nodeLinkedList;
+	}
+	
+	
+	public static NodeLinkedList addList(NodeLinkedList linkedListA,NodeLinkedList linkedListB){
+		
+		NodeLinkedList result = null;
+		
+		int sizeA = getLinkedListSize(linkedListA);
+		int sizeB = getLinkedListSize(linkedListB);
+		Carry carry = new Carry(0);
+		
+		if(sizeA == sizeB){
+			result = addSameSize(linkedListA,linkedListB,carry);
+			if(carry.value>0){
+				result = addToBeginning(result,carry.value);
+			}
+		}else{
+			
+			int diff = Math.abs(sizeB - sizeA);
+			if(sizeB>sizeA){
+				NodeLinkedList temp = linkedListA;
+				linkedListA = linkedListB;
+				linkedListB = temp;
+			}
+			NodeLinkedList cur = linkedListA;
+			while(diff>0){
+				cur = cur.next;
+				diff--;
+			}
+			result = addSameSize(cur,linkedListB,carry);
+			// get addition of remaining first list and carry
+			result = addCarryToRemaining(linkedListA, cur, carry, result);
+	        if(carry.value>0){
+				result = addToBeginning(result,carry.value);
+			}
+		}
+		
+		return result;
+		
+	}
+	
+	private static NodeLinkedList addSameSize(NodeLinkedList linkedListA,NodeLinkedList linkedListB,Carry carry){
+		NodeLinkedList result = null;
+		if(linkedListA == null){
+			return result;
+		}
+		
+	    result = new NodeLinkedList(0);
+		result.next = addSameSize(linkedListA.next,linkedListB.next,carry);
+		
+        int sum = linkedListA.data + linkedListB.data + carry.value;	
+        carry.value = sum/10;
+        sum%=10;
+        
+        result.data=sum;
+		
+		return result;
+	}
+	
+	
+	private static class Carry{
+		
+		public int value;
+		
+		public Carry(int val){
+			value = val;
+		}
+	}
+	
+
+	/* A utility function to insert a node at the beginning of linked list */
+	private static NodeLinkedList addToBeginning(NodeLinkedList head,int data){
+		NodeLinkedList node = new NodeLinkedList(data);
+		node.next = head;
+		return node;
+	}
+	
+	private static NodeLinkedList addCarryToRemaining(NodeLinkedList linkedListA,NodeLinkedList cur,Carry carry,NodeLinkedList result){
+		
+		int sum = 0;
+		if(linkedListA!=cur){
+			addCarryToRemaining(linkedListA.next,cur,carry,result);
+			
+			sum = linkedListA.data + carry.value;
+			carry.value = sum/10;
+			sum%=10;
+			result = addToBeginning(result, sum);
+		}
+		
+		return result;
+	}
 }

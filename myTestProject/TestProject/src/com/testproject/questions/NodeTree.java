@@ -518,4 +518,85 @@ public class NodeTree {
 		}
 	}
 	
+	//Print all nodes at distance k from a given node
+	public static void printNodesInDistanceK(NodeTree root , NodeTree targetNode , int k){
+		
+		printkdistanceNodeDown(targetNode ,k);
+	}
+	
+	public static void  printkdistanceNodeDown(NodeTree node , int k){
+		
+		if(node == null || k<0){
+			return;
+		}
+		
+		if(k == 0){
+			System.out.println(node.value);
+		}else{
+			printkdistanceNodeDown(node.leftNode,k-1);
+			printkdistanceNodeDown(node.rightNode,k-1);	
+		}
+		
+	}
+	
+	 // @?@
+	//Prints all nodes at distance k from a given target node.
+    // The k distant nodes may be upward or downward.  This function
+    // Returns distance of root from target node, it returns -1 if target
+    // node is not present in tree rooted with root.
+	public static int printkdistanceNode(NodeTree node, NodeTree target, int k) {
+         
+        // Base Case 1: If tree is empty, return -1
+        if (node == null) {
+            return -1;
+        }
+ 
+        // If target is same as root.  Use the downward function
+        // to print all nodes at distance k in subtree rooted with
+        // target or root
+        if (node == target) {
+            printkdistanceNodeDown(node, k);
+            return 0;
+        }
+ 
+        // Recur for left subtree
+        int dl = printkdistanceNode(node.leftNode, target, k);
+ 
+        // Check if target node was found in left subtree
+        if (dl != -1) {
+             
+            // If root is at distance k from target, print root
+            // Note that dl is Distance of root's left child from target
+            if (dl + 1 == k) {
+                System.out.print(node.value);
+                System.out.println("");
+            }
+             
+            // Else go to right subtree and print all k-dl-2 distant nodes
+            // Note that the right child is 2 edges away from left child
+            else {
+                printkdistanceNodeDown(node.rightNode, k - dl - 2);
+            }
+ 
+            // Add 1 to the distance and return value for parent calls
+            return 1 + dl;
+        }
+ 
+        // MIRROR OF ABOVE CODE FOR RIGHT SUBTREE
+        // Note that we reach here only when node was not found in left subtree
+        int dr = printkdistanceNode(node.rightNode, target, k);
+        if (dr != -1) {
+            if (dr + 1 == k) {
+                System.out.print(node.value);
+                System.out.println("");
+            } else {
+                printkdistanceNodeDown(node.leftNode, k - dr - 2);
+            }
+            return 1 + dr;
+        }
+ 
+        // If target was neither present in left nor in right subtree
+        return -1;
+    }
+ 
 }
