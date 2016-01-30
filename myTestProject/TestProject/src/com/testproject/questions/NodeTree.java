@@ -436,6 +436,9 @@ public class NodeTree {
 	}
 	
 	private static boolean isLeave(NodeTree node){
+		
+		if(node == null)
+		  return false;
 		return node.leftNode == null && node.rightNode == null;
 	}
 	
@@ -598,5 +601,105 @@ public class NodeTree {
         // If target was neither present in left nor in right subtree
         return -1;
     }
- 
+	
+	//Find sum of all left leaves in a given Binary Tree
+	public static int findSumOfLeftLeaves(NodeTree root,boolean isLeft){
+		
+		if(root == null){
+			return 0;
+		}
+	     
+		if(isLeave(root) && isLeft){
+			System.out.println("left leave=" + root.value);
+			return root.value;
+		}
+		
+		int sumA = findSumOfLeftLeaves(root.leftNode,true);
+		int sumB = findSumOfLeftLeaves(root.rightNode,false);
+     		
+		return sumA + sumB;
+	}
+	
+	
+	public static int findSumOfLeftLeaves_GeeksForGeeks(NodeTree root){
+		
+		int sum = 0;
+		
+		if(root!=null){
+			
+			if(isLeave(root.leftNode)){
+				sum += root.leftNode.value;
+			}else{
+				sum += findSumOfLeftLeaves_GeeksForGeeks(root.leftNode);
+			}
+			sum += findSumOfLeftLeaves_GeeksForGeeks(root.rightNode);
+		}
+		
+		return sum;
+	}
+	
+	//Construct Binary Tree from given Parent Array representation
+	/*  Given an array that represents a tree in such a way array indexes
+	 *  are values in tree nodes array values give the parent node of that
+	 *  particular index (or node). The value of the root node index would
+	 *  always be -1 as there is no parent for root. Construct the standard
+	 *  linked representation of given Binary Tree from this given 
+	 *  representation
+	 */
+	public static NodeTree createTree(int[] parent){
+		
+		NodeTree root = null;
+		NodeTree[] createdNodeds = new NodeTree[parent.length];
+		
+		for (int i = 0; i < parent.length; i++) {
+			int rootInd = createNode(parent,createdNodeds,i);
+			if(rootInd != -1){
+				root = createdNodeds[rootInd];
+			}
+		}
+		
+		return root;
+	}				//   0  1  2  3  4   5  6
+	//Input: parent[] = {1, 5, 5, 2, 2, -1, 3}
+	private static int createNode(int[] parent,NodeTree[] createdNodeds , int i){
+		
+		int rootInd = -1;
+		/*index in arr is node*/
+		if(createdNodeds[i] != null){
+			return -1;
+		}
+		
+		createdNodeds[i] = new NodeTree(i);
+		
+		/*root node*/
+		if(parent[i] == -1){
+			rootInd = i;
+			return rootInd;
+		}
+		
+		/*no parent created to this node*/
+		if(createdNodeds[parent[i]] == null){
+			/*create parent*/
+			rootInd = createNode(parent, createdNodeds, parent[i]);
+		}
+		
+		NodeTree parentNoded = createdNodeds[parent[i]];
+		
+		if(parentNoded.leftNode == null){
+			parentNoded.leftNode = createdNodeds[i];
+		}else{
+		    parentNoded.rightNode = createdNodeds[i];	
+		}
+		
+		return rootInd;
+	}
+	
+	public static void printInOrder(NodeTree root){
+		if(root != null){
+			printInOrder(root.leftNode);
+			System.out.println(root.value+ " ");
+			printInOrder(root.rightNode);
+		}
+	}
+	
 }

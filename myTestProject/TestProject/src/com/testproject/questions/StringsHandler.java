@@ -1,8 +1,6 @@
 package com.testproject.questions;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class StringsHandler {
@@ -239,5 +237,36 @@ public class StringsHandler {
     	   
     	   return sb.reverse().toString();
        }
+       
+       //Recursively print all sentences that can be formed from list of word lists
+       private static void printSentence(String[][] listsOfWords,int rowIndex,int col,String[] output){
+    	   
+    	   int rows = listsOfWords.length;
+    	   if(col >= listsOfWords[rowIndex].length){
+    		   return;
+    	   }
+    	   output[rowIndex] = listsOfWords[rowIndex][col];
+    	   if(rowIndex == rows-1){
+    		   for (String  str : output) {
+				 System.out.print(str + " ");
+			   }
+    		   System.out.println("");
+    		   return;
+    	   }
+    	   
+    		   for (int i = 0; i < listsOfWords[2].length ; i++) {
+    			   printSentence(listsOfWords, rowIndex+1,i,output);
+    		   }
+       }
+       
+       public static void printAllSentences(String[][] listsOfWords){
+    	   
+    	   String[] output = new String[listsOfWords.length]; 
+    	   int cols = listsOfWords[0].length;
+    	   for (int i = 0; i < cols; i++) {
+    		   printSentence(listsOfWords, 0,i,output);	
+		   }
+       }
+       
     
 }

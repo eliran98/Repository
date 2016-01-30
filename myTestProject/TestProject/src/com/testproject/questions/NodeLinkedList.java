@@ -4,10 +4,17 @@ public class NodeLinkedList {
 
 	private NodeLinkedList next;
 	private int data;
+	private char charData;
 
 	public NodeLinkedList(int data) {
 		this.data = data;
 		this.next = null;
+	}
+	
+	
+	
+	public void setNext(NodeLinkedList next) {
+		this.next = next;
 	}
 
 	/**
@@ -27,6 +34,20 @@ public class NodeLinkedList {
 
 		end.next = nodeLinkedList;
 	}
+	public NodeLinkedList appendToTailWithResult(int data) {
+		NodeLinkedList nodeLinkedList = new NodeLinkedList(data);
+		
+		NodeLinkedList end = this;
+		
+		while (end.next != null) {
+			end = end.next;
+		}
+		
+		end.next = nodeLinkedList;
+		return end.next;
+	}
+	
+	
 
 	/**
 	 * delete node with the value data , return the head after the change.
@@ -417,4 +438,130 @@ public class NodeLinkedList {
 		
 		return result;
 	}
+
+	public int getData() {
+		return data;
+	}
+	
+	public NodeLinkedList getNext() {
+		return next;
+	}
+	
+	public static void swap(NodeLinkedList src , NodeLinkedList dest){
+		int temp = src.data;
+		src.data = dest.data;
+		dest.data = temp;
+	}
+	
+	public static NodeLinkedList getPrev(NodeLinkedList pivot,NodeLinkedList start){
+		while(start!=null){
+			
+			if(start.getNext() == pivot){
+				return start;
+			}
+			
+			start = start.getNext();
+		}
+		
+		return null;
+	}
+	
+	//Compare two strings represented as linked lists
+	public static int compareLinkedList(NodeLinkedList headA, NodeLinkedList headB){
+		
+		while(headA!=null && headB!=null && headA.charData == headB.charData){
+			headB = headB.next;
+			headA = headA.next;
+		}
+		
+		if(headA!=null && headB!=null){
+			return headA.charData > headB.charData ? 1 : -1;
+		}
+		
+		if(headA!=null && headB == null){
+			return 1;
+		}else if(headB!=null && headA == null){
+			return -1;
+		}
+		
+		return 0;
+	}
+	//Delete N nodes after M nodes of a linked list
+	public static NodeLinkedList deletePartOfList(NodeLinkedList head,int n,int m){
+		
+		NodeLinkedList mTail = head,nTail = head;
+		
+		while(mTail!=null){
+			int skip = 0;
+			while(skip!=m && mTail!=null){
+				mTail = mTail.next;
+				skip++;
+			}
+			
+			if(mTail == null){
+				return head;
+			}
+			
+			nTail = mTail.next;
+			mTail.next = null;
+			skip = 0;
+			
+			while(skip!=n && nTail!=null){
+				nTail = nTail.next;
+				skip++;
+			}
+			
+			if(nTail == null || nTail.next == null){
+				return head;
+			}
+			
+			mTail.next = nTail.next;
+			nTail.next = null;
+			
+			mTail = mTail.next;
+			nTail = mTail;
+		}
+		
+		
+		return head;
+	}
+	
+	public static NodeLinkedList func(NodeLinkedList head,int n,int m){
+		
+		NodeLinkedList mhead = head , nhead = null,nTail = null;
+		
+		while(mhead!=null){
+			int countM = 1;
+			while(countM!=m && mhead!=null){
+				mhead = mhead.next;
+				countM++;
+			}
+			
+			if(mhead == null || mhead.next == null){
+				return head;
+			}
+			
+			nhead = mhead.next;
+			nTail = nhead;
+			mhead.next = null;
+			
+			if(nhead.next == null){
+				return head;
+			}
+			
+			int countN = 1;
+			while(countN!=n && nhead!=null){
+				nTail = nTail.next;
+				nhead.next = null;
+				nhead = nTail;
+				countN++;
+			}
+			
+			mhead.next = nTail.next;
+			mhead = mhead.next;
+		}
+		
+		return head;
+	}
+	
 }

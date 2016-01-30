@@ -46,6 +46,20 @@ public class Recursion {
 		  }
 		 	return permutations;
 	  }
+	
+	public static int findMin(int[] elements, int index) {
+
+		  if (index == elements.length - 1) {
+		    return elements[index];
+		  }
+
+		  int val = findMin(elements, index + 1);
+
+		  if (elements[index] < val)
+		    return elements[index];
+		  else
+		    return val;
+	}
 
 	public static String insertCharAt(String word, char c, int i) {
 		String start = word.substring(0, i);
