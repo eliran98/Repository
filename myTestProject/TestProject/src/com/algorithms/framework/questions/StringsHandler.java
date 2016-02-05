@@ -268,5 +268,44 @@ public class StringsHandler {
 		   }
        }
        
+       //TimeComplexity O(n).
+       public static boolean isWordsdistanceOne(String firstword, String secondword){
+    	   
+    	   int secondwordLen = secondword.length();
+    	   int firstwordLen  = firstword.length();
+    	   
+    	   if(firstword == null || secondword == null || firstword.equals(secondword) || Math.abs(secondwordLen - firstwordLen)>=2){
+    		   return false;
+    	   }
+    	   
+    	   char[] secondwordsChars = secondword.toCharArray();
+		   char[] firstwordsChars = firstword.toCharArray();
+    	   
+    	   if(secondwordLen == firstwordLen){
+    		   
+    		   int counter = 0;
+    				   
+    		   for (int i = 0; i < secondwordLen ; i++) {
+				  if(secondwordsChars[i]!=firstwordsChars[i]){
+					  counter++;
+				  }
+			   }
+    		   
+    		   return counter == 1 ? true : false;
+    		   
+    	   }else{
+    		   int length = firstwordLen > secondwordLen ? secondwordLen : firstwordLen;
+    		   
+    		   for (int i = 0; i < length ; i++) {
+				   if(secondwordsChars[i]!=firstwordsChars[i]){
+					   return false;
+				   }
+			   }
+    	   }
+    	   
+    	   //seconword = firstword + endChar , if(lenSecond == lenFirst +1)
+    	   //if(lenSecond == lenFirst) and diff in one char.
+    	   return true;
+       }
     
 }

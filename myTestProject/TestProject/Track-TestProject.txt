@@ -14,23 +14,34 @@ Arrays:
 -A Boolean Matrix Question
 -Find length of the longest consecutive path from a given starting character
 -Rotate Matrix Elements, Given a matrix, clockwise rotate elements in it.
+-Find the subarray with least average.
 
 Stack:
 -Design a stack with operations on middle element
 -Sort a stack using recursion
+-Reverse a stack using recursion
 
 pattern search:
 -Anagram Substring Search (Or Search for all permutations)
 
 String:
 -Recursively print all sentences that can be formed from list of word lists
+-Check if edit distance between two strings is one
+
+heap:
+-merge k sorted arrays ? bug
+-How to check if a given array represents a Binary Heap?
+-Heap Sort
 
 need return to this:
-
 QUEUE - How to efficiently implement k Queues in a single array?
 
 
 1.you have matrix NXM write function that print matrix in shablule style. TC-O(MXN) Space- O(MXN) / O(1).
 2.you have array of arrays with variable length write method that print all combinations of numbers.
 3.you hava array of numbers 1/0 write sorting function that sort array in TC-O(n) , what happen if you have 2/1/0.
+
+
+
+Track - 
 

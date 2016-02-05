@@ -510,9 +510,98 @@ public class ArraysHandler {
 		
 	}
 	
-	private static void swap(int[] a , int[] b ,int ia, int ib){
+	//Find the subarray with least average
+	public static void printSubArrWithLeastAvgRec(int[] arr,int k){
+		int ind = findSubArr(arr, k, 0, 0, k - 1);
+		
+		System.out.println("Subarray between indexes " + ind + " and " +(ind+k-1));
+		System.out.print(" { ");
+		while(k!=0){
+			System.out.print(arr[ind]+" ");
+			ind++;
+			k--;
+		}
+		System.out.print(" } ");
+	}
+	
+	private static int findSubArr(int[] arr,int k , int startLeastAvg ,int start,int end){
+		
+		if( end == (arr.length - 1) ){
+			return start;
+		}
+		
+		int indResult = findSubArr(arr, k, startLeastAvg, start+1, end+1);
+		
+		return compare(arr, indResult, start, k);
 		
 	}
 	
+	private static int compare(int[] arr , int indA,int indB, int k){
+		
+		int avgA = 0;
+		int avgB = 0;
+		int counter = indA;
+		
+		while(counter < indA+k){
+			avgA += arr[counter];
+			counter++;
+		}
+		
+		avgA /= k;
+		counter = indB;
+		
+		while(counter < indB+k){
+			avgB += arr[counter];
+			counter++;
+		}
+		
+		avgB /= k;
+		
+		return avgB > avgA ? indA : indB;
+		
+	}
 	
+	//Time-Complexity O(n).
+	public static void printSubArrWithLeastAvg(int[] arr,int k){
+		
+		int curWindowSum = 0 , minWindowSum = 0;
+		int startWindow = 0 , saveStartWindow = 0 , endWindow = k-1;
+		int counter = 0;
+		
+		while(counter<=endWindow){
+			curWindowSum+=arr[counter];
+			counter++;
+		}
+		
+		minWindowSum = curWindowSum;
+		
+		while (counter <= (arr.length-1)){
+			curWindowSum-=arr[startWindow];
+			curWindowSum+=arr[counter];
+			if(minWindowSum > curWindowSum){
+				minWindowSum = curWindowSum;
+				saveStartWindow = counter - k + 1;
+			}
+			
+			endWindow = counter;
+			counter++;
+			startWindow++;
+		}
+		
+		endWindow--;
+		
+		printResultSubArrWithLeastAvg(arr, k, saveStartWindow, endWindow);
+		
+	}
+	
+	private static void printResultSubArrWithLeastAvg(int[] arr , int k ,int saveStartWindow,int  endWindow){
+		System.out.println("Subarray between indexes " + saveStartWindow + " and " + endWindow);
+		System.out.print(" { ");
+		while(k!=0){
+			System.out.print(arr[saveStartWindow]+" ");
+			saveStartWindow++;
+			k--;
+		}
+		System.out.print(" } ");
+	}
 }

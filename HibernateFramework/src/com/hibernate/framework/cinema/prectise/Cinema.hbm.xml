@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping>
+   <class name="com.hibernate.framework.cinema.prectise.CinemaBean" table="CINEMA">
+	    <id name="id" type="java.lang.Integer">
+	        <column name="ID" />
+	        <generator class="identity" />
+	    </id>
+	    <property name="name" type="string">
+	        <column name="NAME" length="20" not-null="true" />
+	    </property>
+	    <!--cascade attribute - save after cinema table also to table cinema_connector_movie and to table movie-->
+	    <set name="movies" table="CINEMA_CONNECTOR_MOVIE" inverse="false" fetch="select" lazy="true" cascade="all">
+	        <key>
+	            <column name="FK_CINEMA_ID" not-null="true" />
+	        </key>
+	        <many-to-many entity-name="com.hibernate.framework.cinema.prectise.MovieBean">
+	            <column name="FK_MOVIE_ID" not-null="true" />
+	        </many-to-many>
+	    </set>
+    </class>
+</hibernate-mapping>

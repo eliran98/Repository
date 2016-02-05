@@ -1,0 +1,28 @@
+
+installing phpMyAdmin:
+http://www.wikihow.com/Install-phpMyAdmin-on-Your-Windows-PC
+
+inverse attr:
+http://www.mkyong.com/hibernate/inverse-true-example-and-explanation/
+fetch attr:
+http://www.mkyong.com/hibernate/hibernate-fetching-strategies-examples/
+
+Lazy Loading in Hibernate
+http://howtodoinjava.com/hibernate/lazy-loading-in-hibernate/
+
+attributes summary:
+lazy=true/false , fetch=select/join , inverse=truw/false.
+
+----------------------------------------------------------------------------------------
+
+#Enable the logging of all the generated SQL statements to the console
+<!--hibernate.cfg.xml -->
+<property name="show_sql">true</property>
+
+#Format the generated SQL statement to make it more readable, but takes up more screen space.
+<!--hibernate.cfg.xml -->
+<property name="format_sql">true</property>
+
+#Hibernate will put comments inside all generated SQL statements to hint what’s the generated SQL trying to do
+<!--hibernate.cfg.xml -->
+<property name="use_sql_comments">true</property>

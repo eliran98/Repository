@@ -1,6 +1,7 @@
 package com.algorithms.framework.questions;
 
 import com.algorithms.framework.logic.IStack;
+import com.algorithms.framework.questions.Stack.StackImpl;
 
 public class Stack {
    
@@ -175,5 +176,39 @@ public class Stack {
 			}
 			return -1;
 		}
+		
+		
 	}
+
+	public static void reverseStackRec(StackImpl stack) throws Exception {
+		reverseStack(stack);
+	}
+		
+	//Reverse a stack using recursion
+	private static void reverseStack(StackImpl stack) throws Exception{
+		
+		 if(!stack.isEmpty()){
+			 int value = stack.pop();
+			 reverseStack(stack);
+			
+			 reverse(stack, value);
+		 }
+		 //1,2,3 - 1\2,3  3,2,1
+		 //2,3 -   2\3
+		 //3  -    3\ --
+	}
+	
+	private static void reverse(StackImpl stack ,int value) throws Exception{
+		
+		if(stack.isEmpty()){
+			stack.push(value);
+			return;
+		}
+		
+		int val = stack.pop();
+		reverse(stack, value);
+		stack.push(val);
+		
+	}
+
 }

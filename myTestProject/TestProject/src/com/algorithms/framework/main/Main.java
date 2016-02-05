@@ -3,9 +3,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.algorithms.framework.algo.PatternSearching;
+import com.algorithms.framework.algorithm.search.sort.HeapSort;
 import com.algorithms.framework.algorithm.search.sort.SortAlgorithm;
 import com.algorithms.framework.algorithm.search.sort.SortAlgorithm.eType;
+import com.algorithms.framework.data.structures.BineryHeap;
+import com.algorithms.framework.data.structures.BineryHeap.eTypeHeap;
 import com.algorithms.framework.questions.ArraysHandler;
+import com.algorithms.framework.questions.HashHandler;
+import com.algorithms.framework.questions.Heap;
+import com.algorithms.framework.questions.MatrixHandler;
 import com.algorithms.framework.questions.NodeLinkedList;
 import com.algorithms.framework.questions.NodeTree;
 import com.algorithms.framework.questions.Queue;
@@ -18,11 +24,30 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Main.main()");
 		try {
-			testQueue();
+			testHeap();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void testHeap(){
+		 int[] arr = {4,1,3,7,11,6,8,9,10};
+		 HeapSort.sort(arr);
+		 ArraysHandler.printArr(arr);
+	}
+	
+	public static void testHashHandler(){
+		int[] arr = {1, 4, 45, 6, 10, -8};
+	}
+	
+	public static void testMatrixHandler(){
+		int[][]  matrix = { {10, 20, 30, 40},
+			                {15, 25, 35, 45},
+			                {27, 29, 37, 48},
+			                {32, 33, 39, 50},
+			              };
+
+		MatrixHandler.printMatrixInSortedOrder(matrix);
 	}
 	
 	public static void testQueue() throws Exception{
@@ -89,7 +114,7 @@ public class Main {
 		
 		System.out.println("");
 		
-		Stack.sortStack(stack);
+		Stack.reverseStackRec(stack);
 		
 		stack.printStack();
 	}
@@ -118,19 +143,21 @@ public class Main {
 //		arr = ArraysHandler.setAllCells(arr);
 		//ArraysHandler.printMatrix(arr);
 		
-		int[][]  matrix = {{1  ,  2  ,  3  },
-						   {4  ,  5  ,  6  },
-						   {7  ,  8 ,  9}};
-		   
-		
-		char[][] matrixB = {{'b', 'e', 'f'},
-                  			{'h', 'd', 'a'},
-                  			{'i', 'c', 'a'}};
+//		int[][]  matrix = {{1  ,  2  ,  3  },
+//						   {4  ,  5  ,  6  },
+//						   {7  ,  8 ,  9}};
+//		   
+//		
+//		char[][] matrixB = {{'b', 'e', 'f'},
+//                  			{'h', 'd', 'a'},
+//                  			{'i', 'c', 'a'}};
 		//int ans = ArraysHandler.findLongestPath_GFG(matrix, 'b');
-		ArraysHandler.rotateMatrixClockwise(matrix);
-		ArraysHandler.printMatrix(matrix);
+//		ArraysHandler.rotateMatrixClockwise(matrix);
+//		ArraysHandler.printMatrix(matrix);
 		//System.out.println(ans);
-		
+		////, k = 2
+		int[] arr = {3, 7, 90, 20, 10, 50, 40};//, k = 3
+		ArraysHandler.printSubArrWithLeastAvg(arr, 3);
 	}
 	
 	
@@ -203,11 +230,19 @@ public class Main {
    public static void testStringsHandler(){
 	   
 	  
-	  String[][] listsOfWords =  {{"you", "we"},
-						          {"have", "are"},
-						          {"sleep", "eat", "drink"}
-						         };
-	  StringsHandler.printAllSentences(listsOfWords);
+//	  String[][] listsOfWords =  {{"you", "we"},
+//						          {"have", "are"},
+//						          {"sleep", "eat", "drink"}
+//						         };
+//	  StringsHandler.printAllSentences(listsOfWords);
+	   
+	  String[] w1 = {"geeks","geeks","geaks","peaks"};
+	  String[] w2 = {"geek","geeks","geeks","geeks"};
+	  
+	  for (int i = 0; i < w2.length; i++) {
+		boolean result = StringsHandler.isWordsdistanceOne(w1[i], w2[i]);
+		System.out.println("result = " + result);
+	  }
    }
    
    public static void temp(){
