@@ -1,4 +1,7 @@
 
+Access phpMyAdmin: 
+http://localhost:7080/phpMyAdmin/
+
 installing phpMyAdmin:
 http://www.wikihow.com/Install-phpMyAdmin-on-Your-Windows-PC
 
