@@ -1,5 +1,6 @@
 package com.design.patterns.framework.dao.pattern;
 
+/*Base on Abstract Factory Pattern*/
 public abstract class DaoFactory {
 
 	public enum DBType {
