@@ -1,11 +1,11 @@
 package com.algorithms.framework.questions;
 
-import com.algorithms.framework.logic.IQueue;
+import com.algorithms.framework.logic.IKQueue;
 
 public class Queue {
   
 	
-	public static class KQueues implements IQueue{
+	public static class KQueues implements IKQueue{
 		
 		private final int QUEUE_SIZE;
 		private final int QUEUE_DETAILS_SIZE;

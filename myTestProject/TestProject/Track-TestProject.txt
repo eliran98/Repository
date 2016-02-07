@@ -33,6 +33,9 @@ heap:
 -How to check if a given array represents a Binary Heap?
 -Heap Sort
 
+Queue:
+-Implement Queue using Stacks.
+
 need return to this:
 QUEUE - How to efficiently implement k Queues in a single array?
 
@@ -41,7 +44,5 @@ QUEUE - How to efficiently implement k Queues in a single array?
 2.you have array of arrays with variable length write method that print all combinations of numbers.
 3.you hava array of numbers 1/0 write sorting function that sort array in TC-O(n) , what happen if you have 2/1/0.
 
-
-
-Track - 
+Track -
 
