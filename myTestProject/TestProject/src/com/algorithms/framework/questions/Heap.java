@@ -35,7 +35,7 @@ public class Heap {
 					root.setElement(MAX_INT);
 				}
 				
-				heap.replaceMin(root);
+				heap.replace(root);
 			}
 		
 		return outputArr;

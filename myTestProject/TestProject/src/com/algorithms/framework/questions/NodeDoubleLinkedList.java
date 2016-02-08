@@ -3,6 +3,7 @@ package com.algorithms.framework.questions;
 public class NodeDoubleLinkedList {
 	
 	private int data;
+	private Object extraData;
 	private NodeDoubleLinkedList next;
 	private NodeDoubleLinkedList prev;
 	
@@ -23,6 +24,24 @@ public class NodeDoubleLinkedList {
 		end.next = new NodeDoubleLinkedList(data);
 		end.next.prev = end;
 		
+	}
+	
+	public NodeDoubleLinkedList addToHead(int data){
+		NodeDoubleLinkedList head = this;
+		NodeDoubleLinkedList newHead = new NodeDoubleLinkedList(data);
+		newHead.next = head;
+		head.prev = newHead;
+		newHead.prev = null;
+		return newHead;
+	}
+	
+	
+	public Object getExtraData() {
+		return extraData;
+	}
+
+	public void setExtraData(Object extraData) {
+		this.extraData = extraData;
 	}
 
 	public int getData() {
@@ -66,5 +85,19 @@ public class NodeDoubleLinkedList {
 		element.prev = null;
 		
 		element = null;
+	}
+	
+	public NodeDoubleLinkedList findNode(Object obj){
+		NodeDoubleLinkedList head = this;
+		
+		while(head!=null){
+			
+			if(head.extraData == obj){
+				return head;
+			}
+			
+			head = head.next;
+		}
+		return null;
 	}
 }
