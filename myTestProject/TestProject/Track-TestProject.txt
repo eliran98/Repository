@@ -3,6 +3,8 @@
 Tree:
 -Construct Binary Tree from given Parent Array representation
 -Find sum of all left leaves in a given Binary Tree
+-Write a program to Calculate Size of a tree
+-Check if leaf traversal of two Binary Trees is same?
 
 LinkedList:
 -Compare two strings represented as linked lists

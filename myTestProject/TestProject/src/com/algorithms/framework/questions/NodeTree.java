@@ -702,4 +702,76 @@ public class NodeTree {
 		}
 	}
 	
+	//Write a program to Calculate Size of a tree
+	public static int calculateSizeTree(NodeTree root){
+		
+		if(root == null){
+			return 0;
+		}
+		
+		
+		int leftSubTreeSize = calculateSizeTree(root.leftNode);
+		int rightSubTreeSize = calculateSizeTree(root.rightNode);
+		
+		return leftSubTreeSize + rightSubTreeSize + 1;
+	}
+	
+	//Check if leaf traversal of two Binary Trees is same?
+	//Time-Complexity O(n) , Auxiliary-Space O(h1+h2).
+	public static boolean isLeafTraversalTheSame(NodeTree rootOne , NodeTree rootTwo){
+		
+		java.util.Stack<NodeTree> stack1 = new java.util.Stack<NodeTree>();
+		java.util.Stack<NodeTree> stack2 = new java.util.Stack<NodeTree>();
+		
+		stack1.push(rootOne);
+		stack2.push(rootTwo);
+		
+		while(!stack1.isEmpty() || !stack2.isEmpty()){
+			
+			if(stack1.isEmpty() || stack2.isEmpty()){
+				return false;
+			}
+			
+			NodeTree temp1 = stack1.pop();
+			while(temp1!=null && !isLeave(temp1)){
+				
+				if(temp1.rightNode!=null){
+					stack1.push(temp1.rightNode);
+				}
+				if(temp1.leftNode!=null){
+					stack1.push(temp1.leftNode);
+				}
+				temp1 = stack1.pop();
+			}
+			
+			NodeTree temp2 = stack2.pop();
+			while(temp2!=null && !isLeave(temp2)){
+				
+				if(temp2.rightNode!=null){
+					stack2.push(temp2.rightNode);
+				}
+				if(temp2.leftNode!=null){
+					stack2.push(temp2.leftNode);
+				}
+				temp2 = stack2.pop();
+			}
+			
+			if(temp1 == null && temp2!=null){
+				return false;
+			}
+			if(temp1 != null && temp2==null){
+				return false;
+			}
+			
+			if(temp1 != null && temp2!=null){
+				if(temp1.value != temp2.value){
+					return false;
+				}
+			}
+			
+		}
+		
+		return true;
+	}
+	
 }
