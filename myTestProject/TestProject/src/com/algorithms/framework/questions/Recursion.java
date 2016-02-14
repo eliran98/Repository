@@ -7,7 +7,6 @@ public class Recursion {
 	/**
 	 * Write a method to generate the nth Fibonacci number.
 	 */
-
 	public static int generateNthFibonacciNumber(int nth) {
 		if(nth <= 0){
 		   return 0;  // f(0) = 0	
