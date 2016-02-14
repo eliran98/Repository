@@ -8,8 +8,17 @@ public class Recursion {
 	 * Write a method to generate the nth Fibonacci number.
 	 */
 
-	public static void generateNthFibonacciNumber(int nth) {
-		// 0,1,1,2,3,5,8,13
+	public static int generateNthFibonacciNumber(int nth) {
+		if(nth <= 0){
+		   return 0;  // f(0) = 0	
+		 }else if(nth == 1){
+			return 1;  // f(1) = 1
+		}else if(nth>1){
+			return generateNthFibonacciNumber(nth-1) + generateNthFibonacciNumber(nth-2);  //f(n) = f(n—1) + f(n-2)
+		}else{
+			return -1; // Error condition
+		}
+		
 	}
 
 	private static int calNthFibonacciNumber(int f0, int f1) {
