@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+     <class name="com.hibernate.framework.cinema.prectise.ActorBean" table="MOVIE">
+	    <id name="id" type="java.lang.Integer">
+	        <column name="ID" />
+	        <generator class="identity" />
+	    </id>
+	    <property name="name" type="string">
+	        <column name="NAME" length="20" not-null="true" />
+	    </property>
+	    
+	    <set name="movies" table="movie_connector_actors" inverse="false" lazy="true" fetch="select">
+	        <key>
+	            <column name="FK_ACTORS_ID" not-null="true" />
+	        </key>
+	        <many-to-many entity-name="com.hibernate.framework.cinema.prectise.MovieBean">
+	            <column name="FK_MOVIE_ID" not-null="true" />
+	        </many-to-many>
+	    </set>
+	    
+     </class>
+</hibernate-mapping>

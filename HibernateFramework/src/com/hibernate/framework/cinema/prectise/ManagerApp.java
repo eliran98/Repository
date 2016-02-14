@@ -7,6 +7,16 @@ public class ManagerApp {
 		
 		public static void func(){
 			ManageData manageData = new ManageData();
+			boolean isLocked = false;
+			
+			
+			manageData.truncate();
+			isLocked=true;
+			if(isLocked){
+				return;
+			}
+			
+			
 			
 			Set<MovieBean> movies = new HashSet<MovieBean>();
 			

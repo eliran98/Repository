@@ -281,7 +281,7 @@ public class NodeTree {
 		if(level == 1){
 			
 			/*check if this node is leave*/
-			if(isLeave(root)){
+			if(isLeaf(root)){
 				return sum + root.value;
 			}else{
 				return sum;
@@ -333,7 +333,7 @@ public class NodeTree {
 			while(!queueOdd.isEmpty()){
 				NodeTree node = queueOdd.poll();
 				
-				if(isLeave(node)){
+				if(isLeaf(node)){
 					sum+= node.value;
 				}else{
 					
@@ -355,7 +355,7 @@ public class NodeTree {
 			while(!queueEven.isEmpty()){
 				NodeTree node = queueEven.poll();
 				
-				if(isLeave(node)){
+				if(isLeaf(node)){
 					sum+= node.value;
 				}else{
 					
@@ -409,7 +409,7 @@ public class NodeTree {
 				
 				NodeTree node = queue.poll();
 				
-				if(isLeave(node)){
+				if(isLeaf(node)){
 					sum+=node.value;
 					isLeafFound = true;
 				}else{
@@ -435,7 +435,7 @@ public class NodeTree {
 		
 	}
 	
-	private static boolean isLeave(NodeTree node){
+	private static boolean isLeaf(NodeTree node){
 		
 		if(node == null)
 		  return false;
@@ -496,7 +496,7 @@ public class NodeTree {
 		
 		printLeafsTree(root.leftNode);
 		
-		if(isLeave(root)){
+		if(isLeaf(root)){
 			System.out.print(root.value + " ");
 		}
 		
@@ -609,7 +609,7 @@ public class NodeTree {
 			return 0;
 		}
 	     
-		if(isLeave(root) && isLeft){
+		if(isLeaf(root) && isLeft){
 			System.out.println("left leave=" + root.value);
 			return root.value;
 		}
@@ -627,7 +627,7 @@ public class NodeTree {
 		
 		if(root!=null){
 			
-			if(isLeave(root.leftNode)){
+			if(isLeaf(root.leftNode)){
 				sum += root.leftNode.value;
 			}else{
 				sum += findSumOfLeftLeaves_GeeksForGeeks(root.leftNode);
@@ -702,4 +702,134 @@ public class NodeTree {
 		}
 	}
 	
+	//Check whether a binary tree is a full binary tree or not
+	public static boolean isBineryTreeFull(NodeTree root){
+		
+		if(root == null){
+			return true;
+		}
+		
+		if(root.leftNode == null && root.rightNode == null){
+			return true;
+		}
+		
+		if(root.leftNode != null && root.rightNode != null){
+			return isBineryTreeFull(root.leftNode) && isBineryTreeFull(root.rightNode);
+		}
+		
+		return false;
+	}
+	
+	//Closest leaf to a given node in Binary Tree
+	public static int findClosestDistanceFromLeaf(NodeTree root , NodeTree nodeX){
+		
+		int distOfSubTree = findInSubTreeClosestDistFromLeaf(nodeX,0,Integer.MAX_VALUE);
+		int distFromRoot = findFromRootClosestDistFromLeaf(root, nodeX);
+		
+		return distOfSubTree > distFromRoot ? distFromRoot : distOfSubTree;
+	}
+	
+	private static int findInSubTreeClosestDistFromLeaf(NodeTree node,int level,int minDistance){
+		
+		if(isLeaf(node)){
+			if(level<minDistance){
+				minDistance = level;
+			}
+		}
+		
+		minDistance = findInSubTreeClosestDistFromLeaf(node.leftNode,level+1,minDistance);
+		minDistance = findInSubTreeClosestDistFromLeaf(node.rightNode,level+1,minDistance);
+		
+		return minDistance;
+	}
+	
+	private static int findFromRootClosestDistFromLeaf(NodeTree root,NodeTree nodeX){
+		
+		if(root == null)
+			return -1;
+		if(root == nodeX)
+		  return 0;
+		
+		int l = findFromRootClosestDistFromLeaf(root.leftNode, nodeX);
+		
+		if(l!=-1){
+			
+		}
+		
+		return-1;
+	}
+	
+	public static void removeHalfNodes(NodeTree root,NodeTree parent,boolean isLeft){
+		
+		if(isHalfNode(root)){
+			NodeTree grandChild = null;
+			grandChild = root.leftNode == null ? root.rightNode : root.leftNode;
+			removeHalfNode(parent, isLeft, grandChild);
+		}
+		
+		removeHalfNodes(root.leftNode,root,true);
+		removeHalfNodes(root.rightNode,root,false);
+		
+	}
+	
+	private static boolean isHalfNode(NodeTree node){
+		return (node.rightNode != null && node.leftNode == null) || (node.rightNode == null && node.leftNode != null);
+	}
+	
+	private static void removeHalfNode(NodeTree parent,boolean isLeft,NodeTree grandChild){
+		if(isLeft){
+			parent.leftNode = grandChild;
+			return;
+		}
+		
+		parent.rightNode = grandChild;
+	}
+	
+	//Given a binary tree, how do you remove all the half nodes?
+	public static NodeTree gfg_removeHalfNodes(NodeTree root){
+		
+		if(root == null){
+			return null;
+		}
+		
+		root.leftNode = gfg_removeHalfNodes(root.leftNode);
+		root.rightNode = gfg_removeHalfNodes(root.rightNode);
+		
+		if(root.leftNode == null && root.rightNode == null){
+			return root;
+		}
+		
+		
+		if(root.leftNode == null){
+			return root.rightNode;
+		}
+		
+		if(root.rightNode == null){
+			return root.leftNode;
+		}
+		
+		return root;
+	}
+	
+	//Convert a given Binary Tree to Doubly Linked List | Set 1
+	public static void convertTree(NodeTree root){
+		
+		if(root == null){
+			return; 
+		}
+		
+		
+		convertTree(root.leftNode);
+		
+		
+		convertTree(root.rightNode);
+		
+	}
+	
+	//Write Code to Determine if Two Trees are Identical
+	public static boolean isTreesIdentical(NodeTree rootOne,NodeTree rootTwo){
+		
+		return false;
+		
+	}
 }

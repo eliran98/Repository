@@ -21,5 +21,15 @@
 	            <column name="FK_CINEMA_ID" not-null="true" />
 	        </many-to-many>
 	    </set>
+	    
+	    <set name="actors" table="MOVIE_CONNECTOR_ACTORS" inverse="true" fetch="select" lazy="true" >
+	        <key>
+	            <column name="FK_MOVIE_ID" not-null="true" />
+	        </key>
+	        <many-to-many entity-name="com.hibernate.framework.cinema.prectise.ActorBean">
+	            <column name="FK_ACTORS_ID" not-null="true" />
+	        </many-to-many>
+	    </set>
+	    
      </class>
 </hibernate-mapping>

@@ -564,4 +564,28 @@ public class NodeLinkedList {
 		return head;
 	}
 	
+	//Write a program function to detect loop in a linked list
+	//Time-Complexity O(n).
+	//Floyd’s Cycle-Finding Algorithm:
+	//This is the fastest method. Traverse linked list using two pointers.  Move one pointer by one and other pointer by two.
+	//If these pointers meet at some node then there is a loop.  If pointers do not meet then linked list doesn’t have loop.
+	public static boolean isLinkedListWithLoop(NodeLinkedList head){
+		
+		NodeLinkedList oneStepRunner = head;
+		NodeLinkedList twoStepRunner = head;
+		
+		while (twoStepRunner!=null && oneStepRunner!=null && twoStepRunner.next!=null) {
+			
+			oneStepRunner = oneStepRunner.next;
+			twoStepRunner = twoStepRunner.next.next;
+			
+			if(twoStepRunner == oneStepRunner){
+				return true;
+			}
+			
+		}
+		
+		return false;
+	}
+	
 }

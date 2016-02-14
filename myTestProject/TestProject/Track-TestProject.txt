@@ -3,10 +3,13 @@
 Tree:
 -Construct Binary Tree from given Parent Array representation
 -Find sum of all left leaves in a given Binary Tree
+-Check whether a binary tree is a full binary tree or not.
+-Given a binary tree, how do you remove all the half nodes?.
 
 LinkedList:
 -Compare two strings represented as linked lists
 -Delete N nodes after M nodes of a linked list
+-Write a program function to detect loop in a linked list
 
 Arrays:
 -Reorder an array according to given indexes

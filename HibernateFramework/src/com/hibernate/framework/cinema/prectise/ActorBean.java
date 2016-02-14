@@ -3,14 +3,14 @@ package com.hibernate.framework.cinema.prectise;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CinemaBean implements  java.io.Serializable{
-  
+public class ActorBean implements java.io.Serializable{
+   
 	private Integer id;
 	private String name;
 	
 	private Set<MovieBean> movies = new HashSet<MovieBean>();
 	
-	public CinemaBean(){}
+	public ActorBean(){}
 
 	public Integer getId() {
 		return id;
@@ -35,5 +35,4 @@ public class CinemaBean implements  java.io.Serializable{
 	public void setMovies(Set<MovieBean> movies) {
 		this.movies = movies;
 	}
-	
 }

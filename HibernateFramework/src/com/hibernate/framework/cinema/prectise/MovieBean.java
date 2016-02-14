@@ -9,7 +9,11 @@ public class MovieBean implements java.io.Serializable{
 	private String name;
 	
 	private Set<CinemaBean> cinemas = new HashSet<CinemaBean>();
-
+	
+	private Set<ActorBean> actors = new HashSet<ActorBean>();
+	
+	public MovieBean(){}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -32,6 +36,14 @@ public class MovieBean implements java.io.Serializable{
 
 	public void setCinemas(Set<CinemaBean> cinemas) {
 		this.cinemas = cinemas;
+	}
+
+	public Set<ActorBean> getActors() {
+		return actors;
+	}
+
+	public void setActors(Set<ActorBean> actors) {
+		this.actors = actors;
 	}
 	
 }
