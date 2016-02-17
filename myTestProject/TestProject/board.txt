@@ -1,4 +1,25 @@
 
+   //ABCDEFGHIJ
+       //A BCDEFGHIJ
+       //AB CDEFGHIJ
+       //ABC DEFGHIJ
+       //ABCD EFGHIJ ..
+       //----------------
+       //ABC D E F G H I J
+       //A BCD E F G H I J
+       //A B CDE F G H I J 
+       //  ..
+       //A B C D E F G HIJ
+       
+       //AB C D E F G H I J
+       //A BC D E F G H I J
+       //A B CD E F G H I J 
+       //  ..
+       //A B C D E F G H IJ 
+       //A B C D E F G H I J
+       
+       
+
  		 1            
 		/ \
        2   3      

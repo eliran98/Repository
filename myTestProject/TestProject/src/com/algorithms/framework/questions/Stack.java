@@ -210,5 +210,86 @@ public class Stack {
 		stack.push(val);
 		
 	}
-
+	
+	//Next Greater Element int[] arr = {13, 7, 6, 12}
+	/*Element         NGE
+	   13      -->    -1
+	   7       -->     12
+	   6       -->     12
+	   12      -->     -1
+	 */
+	public static void getNGE(int[] arr){
+		
+		java.util.Stack<Integer> stack = new  java.util.Stack<Integer>();
+		stack.push(arr[0]);
+		
+		
+		for (int i = 1; i < arr.length; i++) {
+			
+			if(arr[i] < stack.peek()){
+				stack.push(arr[i]);
+			}else{
+				
+			}
+			
+		}
+		
+	}
+	
+	private static void findInStack(java.util.Stack<Integer> stack,Integer val){
+		
+		if(stack.isEmpty()){
+			return;
+		}
+		
+		int valInStack = stack.pop();
+		findInStack(stack, val);
+		if(valInStack < val){
+			
+		}
+		stack.push(val);
+		
+	}
+	
+	//Check for balanced parentheses in an expression
+	//Time Complexity: O(n)
+	//Auxiliary Space: O(n) for stack.
+	public static boolean isExBalancedParentheses(String exp){
+		
+		java.util.Stack<Character> stack = null;
+		char[] arrChars = null;
+		
+		if(exp == null){
+			return false;
+		}
+		
+		stack = new  java.util.Stack<Character>();
+		arrChars = exp.toCharArray();
+		
+		for (char c : arrChars) {
+		
+			if(c == '{' || c == '[' || c == '('){
+			  stack.push(c);	
+			}else if(c == '}' || c == ']' || c == ')'){
+			  char openParentheses = stack.pop();
+			  if(stack.isEmpty() || !isMatchingPair(openParentheses, c)){
+				  return false;
+			  }
+			}
+		}
+		return true;
+	}
+	
+	
+	private static boolean isMatchingPair(char character1, char character2)
+	{
+	   if (character1 == '(' && character2 == ')')
+	     return true;
+	   else if (character1 == '{' && character2 == '}')
+	     return true;
+	   else if (character1 == '[' && character2 == ']')
+	     return true;
+	   else
+	     return false;
+	}
 }

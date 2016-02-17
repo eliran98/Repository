@@ -307,5 +307,18 @@ public class StringsHandler {
     	   //if(lenSecond == lenFirst) and diff in one char.
     	   return true;
        }
+       
+       //Print all possible strings that can be made by placing spaces
+       public static void printAllPossibleStrsWithSpaces(String str){
+    	   
+    	   if(str == null){
+    		   return;
+    	   }
+    	   
+    	   int numSpaces = str.length() - 1;
+    	   
+    	   
+       }
+       
     
 }
