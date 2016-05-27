@@ -1,0 +1,45 @@
+@CHARSET "ISO-8859-1";
+
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar li {
+    float: left;
+}
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar .active {
+    background-color: #4CAF50;
+}
+
+.registration-container .mail-wrapper input , .registration-container .first-name-wrapper input , .registration-container .last-name-wrapper input{
+	float: right;
+}
+
+.registration-container .btn-send-style{
+	margin-top: 10px;
+    background-color: cadetblue;
+    width: 55px;
+    height: 25px;
+    font: 16px;
+    font-size: 15px;
+    font-family: bold;
+    border-radius: 10px;
+}

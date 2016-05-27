@@ -1,0 +1,125 @@
+@CHARSET "ISO-8859-1";
+
+.registration-container .form-registration , .registration-container .registration-title ,.signIn-container .form-signIn{
+	width: 275px;
+	margin: 0px auto;
+	background: cornflowerblue;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.registration-container .registration-title,.signIn-container .signIn-title{
+	text-align: center;
+	margin-bottom: 10px;
+	margin-top: 20px; 
+}
+
+.signIn-container input{
+	margin-top: 10px;
+}
+
+.right{
+  position: relative;
+  right: -11px;
+}
+
+.registration-container .form-title-wrapper ,.signIn-container .form-signIn-title-wrapper{
+	position: relative;
+	top:30px;
+}
+
+
+.registration-container .first-name-wrapper , .registration-container .last-name-wrapper , .registration-container .radio-btns-wrapper , .registration-container .mail-wrapper,.registration-container .user-name-wrapper,.registration-container .new-password-wrapper,.registration-container .confirm-password-wrapper{
+	margin-top: 10px;
+}
+
+.registration-container .rightStyle{
+	float:right;
+}
+
+.registration-container .btn-send-style , .signIn-container .btn-log-in-style{
+	margin-top: 20px;
+	border-radius: 5px;
+    background: cadetblue;
+    border-color: cadetblue;
+}
+
+.registration-container .error-msg,.signIn-container .error-msg-sign-in{
+	margin: 15px auto;
+    width: 50%;
+    color: #D8000C;
+    background-color: #FFBABA;
+    font-size: 1.0em;
+    padding: 12px;
+	display: none;
+	margin-top: 35px;
+}
+
+.registration-container .error-msg i,.signIn-container .error-msg-sign-in i{
+    vertical-align:middle;
+    margin-right: 5px;
+}
+
+.registration-container .linkToSignInPage{
+	float: left;
+    margin-left: 10px;
+    margin-top: 3px;
+    position: relative;
+    top: -3px;
+}
+
+.registration-container .checkbox-wrapper{
+	float: left;
+}
+
+.registration-container .checkbox-wrapper input{
+	    vertical-align: middle;
+}
+
+.signIn-container .checkbox-wrapper input{
+	position: relative;
+	top: 3px;
+}
+
+.registration-container .form-bottom,.signIn-container .checkbox-wrapper{
+	margin-top: 15px;
+    position: absolute;
+}
+
+.btn-sign-out-style{
+	  float: right;
+	  margin-top: 10px;
+	  margin-right: 10px;
+}
+
+.bottom-footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.text-input-field{
+	overflow: hidden;
+	width: 96%;
+	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 2px solid orange;
+    height: 25px;
+}
+
+body{
+	margin: 0px;
+}
+
+.btn-send{
+	width: 54px;
+    height: 27px;
+    background-color: gray;
+    margin: 0px;
+}
+
+.chat-converstion-box{
+	position:absolute; top:30px; left:0; width:100%; height:100%; background-color: green;
+}

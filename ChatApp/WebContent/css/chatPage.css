@@ -1,0 +1,199 @@
+@CHARSET "ISO-8859-1";
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+}
+
+.container-chat {
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
+	height: 100%;
+}
+
+.titleStyle {
+	flex: 0 1 auto;
+	background: tomato;
+	padding: 15px;
+}
+
+ul {
+	background: transparent !important;
+	list-style: none;
+	padding-left: 10px;
+}
+
+.converstion {
+	flex: 1 1 auto;
+	/*background: #f4f4f4;*/
+	background-image: url("../images/wood.jpg");
+	background-repeat: repeat;
+	overflow: auto;
+}
+
+.footer {
+	flex: 0 1 auto;
+	height: 26px;
+	width: 100%;
+}
+
+.converstion-list {
+	background: aliceblue;
+}
+
+.footer-wrapper {
+	display: flex;
+	width: 100%;
+	height: 26px;
+}
+
+.footer-wrapper input {
+	flex: 1;
+}
+
+.footer-wrapper button {
+	flex: 0;
+}
+
+li.item {
+	margin-top: 0px;
+	background: #F5DEB3;
+	padding: 10px;
+	margin-bottom: 8px;
+	display: inline-block;
+	border-radius: 6px;
+}
+
+.img-style {
+	position: absolute;
+	width: 100%;
+	height: 300px;
+}
+
+.load-btn {
+	display: block;
+	margin: 0 auto;
+	margin-top: 5px;
+}
+
+.yt-spinner-img {
+	width: 72px;
+	padding: 2px;
+	background: url(/ChatApp/images/load-spinner.gif) no-repeat right;
+	text-align: left;
+	display: none;
+}
+
+.finish-load {
+	border-radius: 10px;
+	border-color: transparent;
+}
+
+.yt-end-text {
+	display: none;
+	width: 50px;
+	color: black;
+	opacity: 0.6;
+}
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar {
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background-color: #333 !important;
+}
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar li:not(.right-side) {
+    float: left !important;
+}
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar li a:not(.nav-bar) {
+    display: block !important;
+    color: white !important;
+    text-align: center !important;
+    padding: 14px 16px !important;
+    text-decoration: none !important;
+}
+
+.nav-bar{
+  padding: 14px 7px 14px 0px !important;
+  display: block !important;
+  color: white !important;
+  text-align: center !important;
+  text-decoration: none !important;
+}
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar li a:hover:not(.active):not(.nav-bar) {
+    background-color: #111 !important;
+}
+
+.main-page-container .horizontal-tool-bar-container .horizontal-tool-bar .active {
+    background-color: #4CAF50 !important;
+}
+
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    right: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-right .5s;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+
+.rotate{
+    -moz-transition: all 100ms linear;
+    -webkit-transition: all 100ms linear;
+    transition: all 100ms linear;
+}
+
+.rotate.down{
+    -ms-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    transform:rotate(180deg);
+}
