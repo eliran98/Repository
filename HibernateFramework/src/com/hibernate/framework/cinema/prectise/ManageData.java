@@ -1,33 +1,21 @@
 package com.hibernate.framework.cinema.prectise;
 
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
-import com.hibernate.framework.src.Student;
-
-public class ManageData {
-	
-	private static SessionFactory factory; 
+public class ManageData implements IManageData{
 	
 	public ManageData(){
-		try{
-	        factory = new Configuration().configure().buildSessionFactory();
-	     }catch (Throwable ex) { 
-	        System.err.println("Failed to create sessionFactory object." + ex);
-	        throw new ExceptionInInitializerError(ex); 
-	     }
 	}
 	
 	public Integer addCinema(CinemaBean cinemaBean){
 		
-		Session session = factory.openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 	      Transaction tx = null;
 	      Integer cinemaID = null;
 	      try{
@@ -111,7 +99,7 @@ public class ManageData {
 	
 	public List<MovieBean> getMovies(){
 		  List<MovieBean> movies = null;
-	      Session session = factory.openSession();
+	      Session session = HibernateUtil.getSessionFactory().openSession();
 	      Transaction tx = null;
 	      try{
 	         tx = session.beginTransaction();
@@ -170,7 +158,7 @@ public class ManageData {
 	   
 	 public void truncate(){
 		 Transaction tx = null;
-		 Session session = factory.openSession();
+		 Session session = HibernateUtil.getSessionFactory().openSession();
 		 
 		 try{
 			 tx = session.beginTransaction();
@@ -195,4 +183,141 @@ public class ManageData {
 	      }
 		 
 	 }
+
+	//***************************************************************************************************************************************//
+	 
+	@Override
+	public void saveCinema(Set<CinemaBean> cinemas){
+		 Transaction tx = null;
+		 Session session = null;
+		 
+		 try{
+			 session = HibernateUtil.getSessionFactory().openSession();
+			 tx = session.beginTransaction();
+			 for (CinemaBean cinemaBean : cinemas) {
+				 session.save(cinemaBean);
+			 }
+			 tx.commit();
+		  }catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      }finally {
+	         session.close(); 
+	      }
+	}
+
+	@Override
+	public void addMovieToCinemaCompanyByID(Integer id) {
+		Set<CinemaBean> listcinemas = new HashSet<CinemaBean>();
+		listcinemas.add(getByID(id));
+		
+		MovieBean movieBean_1 = new MovieBean();
+		MovieBean movieBean_2 = new MovieBean();
+		MovieBean movieBean_3 = new MovieBean();
+		
+		ActorBean actorBean1 = new ActorBean();
+		ActorBean actorBean2 = new ActorBean();
+		ActorBean actorBean3 = new ActorBean();
+		
+		actorBean1.setName("Johne Travolta");
+		actorBean2.setName("Morgan Friman");
+		actorBean3.setName("Silvestar Stalon");
+		
+		movieBean_1.setName("Troy");
+		movieBean_2.setName("Rock");
+		movieBean_3.setName("War Stars");
+		
+		Set<MovieBean> listMovies = new HashSet<MovieBean>();
+		Set<ActorBean> listActors = new HashSet<ActorBean>();
+		listActors.add(actorBean1);
+		listActors.add(actorBean2);
+		movieBean_1.setActors(listActors);
+		movieBean_1.setCinemas(listcinemas);
+		movieBean_3.setActors(listActors);
+		movieBean_3.setCinemas(listcinemas);
+		
+		listMovies.add(movieBean_1);
+		listMovies.add(movieBean_3);
+		
+		Set<ActorBean> listActors2 = new HashSet<ActorBean>();
+		listActors2.add(actorBean3);
+		movieBean_2.setActors(listActors2);
+		movieBean_2.setCinemas(listcinemas);
+		
+		listMovies.add(movieBean_2);
+		
+		saveGeneric(listMovies);
+//		
+//		actorBean1.setMovies(listMovies);
+//		actorBean2.setMovies(listMovies);
+//		
+//		actorBean3.setMovies(listMovies_2);
+	}
+	
+	private void saveGeneric(Set<MovieBean> listObj){
+		 Transaction tx = null;
+		 Session session = null;
+		 
+		 try{
+			 session = HibernateUtil.getSessionFactory().openSession();
+			 tx = session.beginTransaction();
+			 for (Object obj : listObj) {
+				 session.save(obj);
+			 }
+			 tx.commit();
+		  }catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      }finally {
+	         session.close(); 
+	      }
+	}
+	
+	private CinemaBean getByID(Integer id){
+		Transaction tx = null;
+		Session session = null;
+		CinemaBean cinemaBean = null;
+		
+		try{
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			cinemaBean = session.get(CinemaBean.class,id);
+			tx.commit();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		}finally {
+			session.close(); 
+		}
+		return cinemaBean;
+	}
+
+	public void insertDirectors(List<DirectorBean> directors){
+		Transaction tx = null;
+		Session session = null;
+		
+		try{
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			List<MovieBean> movies = session.createQuery("FROM MovieBean").list();
+			for (DirectorBean director : directors) {
+				for (MovieBean movieBean : movies) {
+					if((director.getName().toLowerCase().equals("rogers")) && (movieBean.getName().toLowerCase().equals("war stars") || movieBean.getName().toLowerCase().equals("troy"))){
+						director.getMovies().add(movieBean);
+					}else if((director.getName().toLowerCase().equals("shpilberg")) && movieBean.getName().toLowerCase().equals("rock")){
+						director.getMovies().add(movieBean);
+					}
+				}
+			}
+			for (DirectorBean director : directors) {
+				session.save(director);
+			}
+			tx.commit();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		}finally {
+			session.close(); 
+		}
+	}
 }

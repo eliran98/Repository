@@ -26,4 +26,10 @@ public class CustomMinHeapNode extends BineryHeap.BineryHeapNode{
 	public void setNextIndex(int nextIndex) {
 		this.nextIndex = nextIndex;
 	}
+
+	@Override
+	public String toString() {
+		return "CustomMinHeapNode [arrIndex=" + arrIndex + ", nextIndex=" + nextIndex + "]";
+	}
+	
 }

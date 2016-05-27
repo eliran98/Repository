@@ -31,4 +31,38 @@ public class MatrixHandler {
 			}
 	}
 	
+	//Submatrix Sum Queries O(n).
+	public static int querySumMatrix(int[][] matrix,int tli,int tlj,int rli,int rlj){
+		
+		/*input validation*/
+		if(matrix == null || tli>rli || tlj>rlj  || (matrix.length-1)<rli || (matrix[0].length-1)<rlj){
+			return -1;
+		}
+		
+		int sumSubMatrix = 0;
+		
+		for (int i = tli ; i <=rli ; i++) {
+			for (int j = tlj ; j <=rlj ; j++) {
+				sumSubMatrix+=matrix[i][j];
+			}
+		}
+		
+		return sumSubMatrix;
+		
+	}
+	
+	//Maximum size rectangle binary sub-matrix with all 1s
+	public void findMaxRecInSubMatrix(int[][] matrix){
+	/*	Input :   0 1 1 0
+        		  1 1 1 1
+        		  1 1 1 1
+        		  1 1 0 0
+
+      Output :    1 1 1 1
+        		  1 1 1 1*/
+		
+	}
+	
+	//Print unique rows in a given boolean matrix
+	
 }

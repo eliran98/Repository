@@ -16,8 +16,6 @@ public class ManagerApp {
 				return;
 			}
 			
-			
-			
 			Set<MovieBean> movies = new HashSet<MovieBean>();
 			
 			MovieBean movieBean = new MovieBean();

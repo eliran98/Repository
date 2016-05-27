@@ -243,4 +243,68 @@ public class SortAlgorithm {
 	     }
 	     return false;
    }
+   
+   //http://www.java2novice.com/java-sorting-algorithms/merge-sort/
+   public static void mergeSort(int[] arr,int start,int end){
+		
+		if(start > end){
+			return;
+		}
+		
+		int mid = start + (end - start)/2;
+		
+		mergeSort(arr,start,mid);
+		mergeSort(arr,mid+1,end);
+		
+		mergeParts(arr, start, end, mid);
+	}
+	
+	private static void mergeParts(int[] arr,int start,int end,int mid){
+		
+		int i = start;
+		int j = mid+1;
+		int k = start;
+		
+		int[] tempArr = new int[arr.length];
+		for (int l = start; l <=end; l++) {
+			tempArr[l] = arr[l];
+		}
+		
+		while(i<=mid && j<=end){
+			if(tempArr[i]  <= tempArr[j]){
+				arr[k] = tempArr[i];
+				i++;
+			}else{
+				arr[k] = tempArr[j];
+				j++;
+			}
+			k++;
+		}
+		
+		while(i<=mid){
+			arr[k] = tempArr[i];
+			i++;
+			k++;
+		}
+	}
+	
+	
+	//Time Complexity o(logn).
+	public static int binerySearch(int[] sortedArr,int start,int end,int find){
+		
+		if(end < start){
+			return 0;
+		}
+		
+		int mid = start + (end - start)/2;
+		if(sortedArr[mid] == find){
+			return mid;
+		}
+		
+		if(sortedArr[start] <= find && find <= sortedArr[mid]){
+			return binerySearch(sortedArr, start, mid, find);
+		}else{
+			return binerySearch(sortedArr, mid+1, end, find);
+		}
+	}
 }

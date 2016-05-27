@@ -12,7 +12,7 @@
 	        <column name="NAME" length="20" not-null="true" />
 	    </property>
 	    <!--cascade attribute - save after cinema table also to table cinema_connector_movie and to table movie-->
-	    <set name="movies" table="CINEMA_CONNECTOR_MOVIE" inverse="false" fetch="select" lazy="true" cascade="all">
+	    <set name="movies" table="CINEMA_CONNECTOR_MOVIE" inverse="true" fetch="select" lazy="true" cascade="all">
 	        <key>
 	            <column name="FK_CINEMA_ID" not-null="true" />
 	        </key>
@@ -20,5 +20,9 @@
 	            <column name="FK_MOVIE_ID" not-null="true" />
 	        </many-to-many>
 	    </set>
+	    <set name="listCinemaDetails" table="CINEMA_DETAILS" cascade="all">
+	         <key column="FK_CINEMA_ID" not-null="true" />
+	         <one-to-many class="com.hibernate.framework.cinema.prectise.CinemaDetials"></one-to-many>
+	    </set> 	
     </class>
 </hibernate-mapping>

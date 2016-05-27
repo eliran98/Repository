@@ -4,16 +4,16 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-     <class name="com.hibernate.framework.cinema.prectise.ActorBean" table="MOVIE">
+     <class name="com.hibernate.framework.cinema.prectise.ActorBean" table="ACTORS">
 	    <id name="id" type="java.lang.Integer">
 	        <column name="ID" />
-	        <generator class="identity" />
+	        <generator class="native" />
 	    </id>
 	    <property name="name" type="string">
 	        <column name="NAME" length="20" not-null="true" />
 	    </property>
 	    
-	    <set name="movies" table="movie_connector_actors" inverse="false" lazy="true" fetch="select">
+	    <set name="movies" table="movie_connector_actors" inverse="true" lazy="true" fetch="select">
 	        <key>
 	            <column name="FK_ACTORS_ID" not-null="true" />
 	        </key>

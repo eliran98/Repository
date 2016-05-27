@@ -19,6 +19,7 @@
 		
 		<!-- List of XML mapping files -->
 		<mapping resource="com/hibernate/framework/cinema/prectise/Cinema.hbm.xml"/>
+		<mapping resource="com/hibernate/framework/cinema/prectise/Cinema_details.hbm.xml"/>
 		<mapping resource="com/hibernate/framework/cinema/prectise/Movie.hbm.xml"/>
 		<mapping resource="com/hibernate/framework/cinema/prectise/Director.hbm.xml"/>
 		<mapping resource="com/hibernate/framework/cinema/prectise/Actor.hbm.xml"/>

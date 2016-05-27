@@ -4,6 +4,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class StringsHandler {
+	
+	public static void main(String[] args) {
+		//Input  : a -> bc -> d -> dcb -> a -> NULL abcdcba
+		int arr1[] = {1, 2, 3};
+		int arr2[] = {1, 2, 3};
+		if (arr1.equals(arr2))
+			System.out.println("Same");
+		else
+			System.out.println("Not same");
+	}
     
 	//1.4
 	
@@ -15,8 +25,8 @@ public class StringsHandler {
      */
     static public Character findFirstCharThatAppearOnce(String str){
 		
-    	int[] results = null;
-    	char[]  arrChars = null;
+    	int[]  results = null;
+    	char[] arrChars = null;
     	
     	if(str == null || str.length() == 0){
     		return null;
@@ -320,5 +330,84 @@ public class StringsHandler {
     	   
        }
        
-    
+       //Print all palindrome permutations of a string
+       //Given a string, we need to print all possible palindromes that can be generated using letters of that string.
+       public static void printPermutationsOfStrPalindrome(String str){
+    	   if(str == null || str.isEmpty()){
+    		   return;
+    	   }
+    	   printPermutPalindrom(str.toCharArray() , 0 , str.length()-1);
+       }
+       
+       private static void printPermutPalindrom(char[] charsArr,int index,int lastIndex){
+    	   if(index == lastIndex){
+    		   //if(isPalindrome(charsArr, 0 , charsArr.length - 1)){
+    		   if(charsArr!=null)
+    			   System.out.println(String.valueOf(charsArr));
+    		   //}
+    	   }else{// ABC
+    		   	 // A_BC     
+    		   // AB_C AC_B
+    		   for (int i = index; i <=lastIndex; i++) {
+    			   charsArr = swap(charsArr,i,index);
+    			   printPermutPalindrom(charsArr, index+1, lastIndex);
+    			   charsArr = swap(charsArr,i,index);
+			   }
+    	   }
+       }
+       
+       private static char[] swap(char[] charsArr,int i,int j){
+    	   
+    	   if(charsArr == null || charsArr.length>=i || charsArr.length>=j){
+    		   return null;
+    	   }
+    	   
+    	   char temp = charsArr[i];
+    	   charsArr[i] = charsArr[j];
+    	   charsArr[j] = temp;
+    	   
+    	   return charsArr;
+       }
+       
+       private static boolean isPalindrome(char[] charsArr,int start,int end){
+    	   
+    	   if(start>=end){
+    		   return true;
+    	   }
+    	   
+    	   return charsArr[start] == charsArr[end] && isPalindrome(charsArr, start+1, end-1);
+       }
+       
+       //Check if two given strings are isomorphic to each other
+       //TimeComplexit o(n) , spaceComplexity o(1). 
+       public static boolean isIsomorphic(String strA,String strB){
+    	   
+    	   if(strA == null || strB == null || strA.isEmpty() || strB.isEmpty() || strA.length()!=strB.length()){
+    		   return false;
+    	   }
+    	
+    	   boolean[] markVisited = new boolean[256];
+    	   int[] mapCharATChar = new int[256];
+    	   
+    	   for (int i = 0; i < strA.length(); i++) {
+			  
+    		   if(mapCharATChar[strA.charAt(i)] == 0){
+    			   
+    			   //can not map one-to-one
+    			   if(markVisited[strB.charAt(i)]){
+    				   return false;
+    			   }
+    			   
+    			   markVisited[strB.charAt(i)] = true;
+    			   mapCharATChar[strA.charAt(i)] = strB.charAt(i);
+    			   
+    		   }else{
+    			   if(mapCharATChar[strA.charAt(i)] != strB.charAt(i)){
+    				   return false;
+    			   }
+    		   }
+		   }
+    	   
+    	   return true;
+       }
 }

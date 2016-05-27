@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+     <class name="com.hibernate.framework.cinema.prectise.CinemaDetials" table="CINEMA_DETAILS">
+		    <id name="id" type="java.lang.Integer">
+		        <column name="ID" />
+		        <generator class="identity" />
+		    </id>
+		    <property name="city" type="string">
+		        <column name="CITY" length="20" not-null="true" />
+		    </property>
+		    <property name="address" type="string">
+		        <column name="ADDRESS" length="20" not-null="true" />
+		    </property>
+		    <property name="phoneNumber" type="string">
+		        <column name="PHONE_NUMBER" length="20" not-null="true" />
+		    </property>
+     </class>
+</hibernate-mapping>

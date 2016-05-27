@@ -9,6 +9,7 @@ public class CinemaBean implements  java.io.Serializable{
 	private String name;
 	
 	private Set<MovieBean> movies = new HashSet<MovieBean>();
+	private Set<CinemaDetials> listCinemaDetails = new HashSet<CinemaDetials>();
 	
 	public CinemaBean(){}
 
@@ -18,6 +19,14 @@ public class CinemaBean implements  java.io.Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Set<CinemaDetials> getListCinemaDetails() {
+		return listCinemaDetails;
+	}
+
+	public void setListCinemaDetails(Set<CinemaDetials> listCinemaDetails) {
+		this.listCinemaDetails = listCinemaDetails;
 	}
 
 	public String getName() {

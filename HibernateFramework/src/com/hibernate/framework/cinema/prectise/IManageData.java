@@ -1,5 +1,11 @@
 package com.hibernate.framework.cinema.prectise;
 
+import java.util.Set;
+
 public interface IManageData {
-	//public List<String> getMoviesByCinema(String cinemaId);
+	
+	public void saveCinema(Set<CinemaBean> cinemas);
+	
+	public void addMovieToCinemaCompanyByID(Integer id);
+	
 }

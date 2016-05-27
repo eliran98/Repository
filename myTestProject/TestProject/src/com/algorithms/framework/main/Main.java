@@ -24,7 +24,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Main.main()");
 		try {
-			testHeap();
+			testNodeLinkedList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -41,13 +41,17 @@ public class Main {
 	}
 	
 	public static void testMatrixHandler(){
-		int[][]  matrix = { {10, 20, 30, 40},
-			                {15, 25, 35, 45},
-			                {27, 29, 37, 48},
-			                {32, 33, 39, 50},
-			              };
-
-		MatrixHandler.printMatrixInSortedOrder(matrix);
+		int[][]  matrix = {{1, 2, 3, 4, 6},
+			                {5, 3, 8, 1, 2},
+			                {4, 6, 7, 5, 5},
+			                {2, 4, 8, 9, 4} };
+		
+//		Query1: tli = 0, tlj = 0, rbi = 1, rbj = 1
+//		Query2: tli = 2, tlj = 2, rbi = 3, rbj = 4
+//		Query3: tli = 1, tlj = 2, rbi = 3, rbj = 3;
+		System.out.println(MatrixHandler.querySumMatrix(matrix, 0, 0, 1, 1));
+		System.out.println(MatrixHandler.querySumMatrix(matrix, 2, 2, 3, 4));
+		System.out.println(MatrixHandler.querySumMatrix(matrix, 1, 2, 3, 3));
 	}
 	
 	public static void testQueue() throws Exception{
@@ -221,10 +225,14 @@ public class Main {
 //	   NodeLinkedList.printLinkedList(result);
 	   
 	   // 1->2->3->4->5->6->7->8->9->10 | M = 3, N = 2
-	   NodeLinkedList linkedList = new NodeLinkedList(1);
-	   linkedList.appendToTailWithResult(2).appendToTailWithResult(3).appendToTailWithResult(4).appendToTailWithResult(5).appendToTailWithResult(6).appendToTailWithResult(7).appendToTailWithResult(8);//.appendToTailWithResult(9).appendToTailWithResult(10);
-	   linkedList = NodeLinkedList.func(linkedList, 2, 2);
-	   NodeLinkedList.printLinkedList(linkedList);
+	   //NodeLinkedList linkedList = new NodeLinkedList(1);
+	   //linkedList.appendToTailWithResult(2).appendToTailWithResult(3).appendToTailWithResult(4).appendToTailWithResult(5).appendToTailWithResult(6).appendToTailWithResult(7).appendToTailWithResult(8);//.appendToTailWithResult(9).appendToTailWithResult(10);
+	   //linkedList = NodeLinkedList.func(linkedList, 2, 2);
+	   NodeLinkedList firstLinkedList = new NodeLinkedList(5);
+	   firstLinkedList.appendToTailWithResult(10).appendToTailWithResult(15).appendToTailWithResult(40);
+	   NodeLinkedList secondLinkedList = new NodeLinkedList(2);
+	   secondLinkedList.appendToTailWithResult(3).appendToTailWithResult(20);
+	   NodeLinkedList.printLinkedList(NodeLinkedList.mergeSoretedListsToReverseList_B(firstLinkedList, secondLinkedList));
    }
    
    public static void testStringsHandler(){
