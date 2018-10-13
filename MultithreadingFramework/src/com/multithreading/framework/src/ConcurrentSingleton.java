@@ -1,5 +1,8 @@
 package com.multithreading.framework.src;
 
+/**
+ * Singleton impl
+ */
 public class ConcurrentSingleton {
 	
 	private static volatile ConcurrentSingleton singleton;
